@@ -14,6 +14,11 @@ app.use(cors()); // you can restrict to frontend origin later
 
 app.use("/api/users", userRoutes);
 app.use("/api/tasks", taskRoutes);
+// ✅ Health check route (for deployment testing)
+app.get("/api/health", (req, res) => {
+  res.status(200).json({ ok: true, message: "Aura backend is running 🚀" });
+});
+
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
 const PORT = process.env.PORT || 5000;
